@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Item {
+  id        Int      @id @default(autoincrement())
+  type      String
+  title     String?
+  content   String
+  createdAt DateTime @default(now())
+
+  chunks    Chunk[]
+}
+
+model Chunk {
+  id        Int      @id @default(autoincrement())
+  itemId    Int
+  content   String
+  embedding String
+  createdAt DateTime @default(now())
+
+  item      Item @relation(fields: [itemId], references: [id], onDelete: Cascade)
+}
