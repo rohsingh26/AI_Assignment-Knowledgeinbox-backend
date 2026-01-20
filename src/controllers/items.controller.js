@@ -1,28 +1,6 @@
 import prisma from "../prismaClient.js";
 import { removeVectorsByChunkIds } from "../services/vectorStore.service.js";
 
-export const createItem = async (req, res, next) => {
-  try {
-    const { type, title, content } = req.body;
-
-    if (!type || !content) {
-      return res.status(400).json({ error: "Type and content are required" });
-    }
-
-    const item = await prisma.item.create({
-      data: {
-        type,
-        title,
-        content,
-      },
-    });
-
-    res.status(201).json(item);
-  } catch (err) {
-    next(err);
-  }
-};
-
 export const getItems = async (req, res, next) => {
   try {
     const items = await prisma.item.findMany({
