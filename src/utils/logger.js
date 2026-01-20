@@ -1,7 +1,15 @@
 export const logInfo = (message, data = null) => {
-  console.log(`[INFO] ${message}`, data || "");
+  if (data) {
+    console.log(`[INFO] ${message}`, JSON.stringify(data, null, 2));
+  } else {
+    console.log(`[INFO] ${message}`);
+  }
 };
 
 export const logError = (message, data = null) => {
-  console.error(`[ERROR] ${message}`, data || "");
+  if (data) {
+    console.error(`[ERROR] ${message}`, JSON.stringify(data, null, 2));
+  } else {
+    console.error(`[ERROR] ${message}`);
+  }
 };

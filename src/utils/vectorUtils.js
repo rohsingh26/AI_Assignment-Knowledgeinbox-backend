@@ -1,6 +1,13 @@
 export const cosineSimilarity = (vecA, vecB) => {
-  if (!vecA || !vecB || vecA.length !== vecB.length) return 0;
-
+  if (
+    !Array.isArray(vecA) ||
+    !Array.isArray(vecB) ||
+    vecA.length === 0 ||
+    vecB.length === 0 ||
+    vecA.length !== vecB.length
+  ) {
+    return 0;
+  }
   let dot = 0;
   let magA = 0;
   let magB = 0;
@@ -11,7 +18,10 @@ export const cosineSimilarity = (vecA, vecB) => {
     magB += vecB[i] * vecB[i];
   }
 
+  magA = Math.sqrt(magA);
+  magB = Math.sqrt(magB);
+
   if (magA === 0 || magB === 0) return 0;
 
-  return dot / (Math.sqrt(magA) * Math.sqrt(magB));
+  return dot / (magA * magB);
 };

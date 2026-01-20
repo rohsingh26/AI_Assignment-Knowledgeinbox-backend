@@ -36,16 +36,19 @@ export const getItems = async (req, res, next) => {
 
 export const deleteItem = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const id = parseInt(req.params.id);
 
-    const chunks = await prisma.chunk.findMany({ where: { itemId: parseInt(id) } });
-    const chunkIds = chunks.map((c) => c.id);
+    const item = await prisma.item.findUnique({ where: { id } });
+    if (!item) {
+      return res.status(404).json({ error: "Item not found" });
+    }
 
-    // Remove vectors from in-memory store
+    const chunks = await prisma.chunk.findMany({ where: { itemId: id } });
+    const chunkIds = chunks.map(c => c.id);
+
     removeVectorsByChunkIds(chunkIds);
 
-    // Delete item (cascades to chunks)
-    await prisma.item.delete({ where: { id: parseInt(id) } });
+    await prisma.item.delete({ where: { id } });
 
     res.status(200).json({ message: "Item deleted successfully" });
   } catch (err) {

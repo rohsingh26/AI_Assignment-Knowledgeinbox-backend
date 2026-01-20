@@ -4,7 +4,7 @@ import { getItems, deleteItem, createItem } from "../controllers/items.controlle
 const router = express.Router();
 
 router.get("/", getItems);
-router.post("/", createItem); // ← add this
+router.post("/", createItem);
 router.delete("/:id", deleteItem);
 
 export default router;

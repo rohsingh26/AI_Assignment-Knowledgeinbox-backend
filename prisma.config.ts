@@ -3,7 +3,6 @@ import { defineConfig } from "prisma/config";
 export default defineConfig({
   schema: "prisma/schema.prisma",
 
-  // REQUIRED for prisma migrate
   datasource: {
     url: "file:./data.db",
   },

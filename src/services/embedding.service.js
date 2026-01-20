@@ -1,24 +1,15 @@
-import OpenAI from "openai";
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+import axios from "axios";
 
 export const generateEmbedding = async (text) => {
-    console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY);
-
   if (!text || text.trim().length === 0) {
-    return []; // return empty embedding for empty strings
+    return [];
   }
 
   try {
-    const response = await openai.embeddings.create({
-      model: "text-embedding-3-small",
-      input: text,
-    });
-    return response.data[0].embedding;
+    const response = await axios.post("http://127.0.0.1:8000/embed", { text });
+    return response.data.embedding;
   } catch (err) {
-    console.error("Embedding generation error:", err.response?.data || err.message);
+    console.error("Embedding generation error:", err.message);
     throw new Error("Failed to generate embedding");
   }
 };
