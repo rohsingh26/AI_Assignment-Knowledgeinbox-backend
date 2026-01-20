@@ -16,7 +16,7 @@ export const askQuestion = async (question, context) => {
       max_tokens: 500,
     });
 
-    return response.choices[0].message.content.trim();
+    return response.choices[0].message.content.trim() || "";
   } catch (err) {
     throw new Error("Failed to get answer from OpenAI");
   }

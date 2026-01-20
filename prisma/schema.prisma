@@ -1,9 +1,10 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "sqlite"
+  url      = "file:./data.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
 }
 
 model Item {
@@ -12,7 +13,6 @@ model Item {
   title     String?
   content   String
   createdAt DateTime @default(now())
-
   chunks    Chunk[]
 }
 
@@ -20,8 +20,7 @@ model Chunk {
   id        Int      @id @default(autoincrement())
   itemId    Int
   content   String
-  embedding String
+  embedding Json
   createdAt DateTime @default(now())
-
   item      Item @relation(fields: [itemId], references: [id], onDelete: Cascade)
 }
