@@ -208,10 +208,15 @@ npx prisma migrate dev
 npm run dev
 ```
 
-
 ## Server will run at:
 ```text
 http://localhost:5000
+```
+
+
+### To clear the local SQLite Database:
+```bash
+node clearDb.js
 ```
 
 --- 
