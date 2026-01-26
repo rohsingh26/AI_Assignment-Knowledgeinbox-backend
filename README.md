@@ -42,6 +42,29 @@ We use a **local MiniLM (Sentence Transformers)** model for embeddings
 and reserve **Gemini API** only for **final answer generation**.
 
 ---
+## ⚠️ Prerequisite (Important)
+
+Before starting the backend:
+
+### ✅ Start the MiniLM embedding server first
+
+Clone MiniLM repo:
+```bash
+https://github.com/rohsingh26/AI_Assignment-Knowledgeinbox-Local-LLM.git
+```
+
+The backend depends on:
+```bash
+http://localhost:8000/embed
+```
+
+MiniLM repo link:
+```
+https://github.com/rohsingh26/AI_Assignment-Knowledgeinbox-Local-LLM
+```
+- Refer to the MiniLM server README for setup instructions.
+
+---
 
 ## 🔄 High-Level Flow
 
@@ -164,20 +187,6 @@ backend/
 git clone https://github.com/rohsingh26/AI_Assignment-Knowledgeinbox-backend.git
 cd AI_Assignment-Knowledgeinbox-backend
 ```
-
-
-## ⚠️ Prerequisite (Important)
-
-Before starting the backend:
-
-### ✅ Start the MiniLM embedding server first
-
-The backend depends on:
-```bash
-http://localhost:8000/embed
-```
-
-- Refer to the MiniLM server README for setup instructions.
 
 ---
 
